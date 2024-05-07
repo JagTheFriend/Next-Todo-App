@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
+import { Bounce, toast } from "react-toastify";
 import addTodo from "~/actions";
 
 export default function DisplayInputField() {
@@ -9,7 +10,22 @@ export default function DisplayInputField() {
   return (
     <form
       className="mx-4 mt-4 flex flex-col items-center justify-center gap-4"
-      action={addTodo}
+      action={async (formData) => {
+        const data = await addTodo(formData);
+        if (data?.error) {
+          toast.error(data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+        }
+      }}
     >
       <input
         type="text"
