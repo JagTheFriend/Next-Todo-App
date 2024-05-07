@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata = {
   title: "Authentication",
   description: "login page for Todo app",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/logo.svg" }],
 };
 
 export default function RootLayout({

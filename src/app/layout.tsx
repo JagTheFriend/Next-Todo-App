@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata = {
   title: "Todo App",
   description: "A very simple todo app",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/logo.svg" }],
 };
 
 function LoadingPage() {
