@@ -11,7 +11,8 @@ export default function Page({
   return (
     <>
       <h1 className="cursor-pointer text-2xl transition-all hover:underline">
-        Please login to this demo Todo App built with Next.js App Router
+        Please {searchParam === "sign-in" ? "login" : "register"} to use this
+        Todo App built with Next.js App Router.
       </h1>
       {searchParam === "sign-in" ? (
         <SignIn routing="hash" />
