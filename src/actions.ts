@@ -27,5 +27,4 @@ export default async function addTodo(formData: FormData) {
     return { error: true, message: "An Error Occurred" };
   }
   revalidatePath("/");
-  return { error: false, message: "Todo Added" };
 }
