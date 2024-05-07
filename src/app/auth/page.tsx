@@ -1,7 +1,7 @@
 import { SignIn, SignUp } from "@clerk/nextjs";
 
 export default function Page({
-  params,
+  params: _params,
   searchParams,
 }: {
   params: { slug: string };

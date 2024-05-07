@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "./server/db";
 
 export default async function addTodo(formData: FormData) {
-  const content = (formData.get("content") ?? "").toString();
+  const content = formData.get("content")?.toString() ?? "";
   const { userId } = auth();
 
   if (!content) {
