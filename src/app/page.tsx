@@ -37,7 +37,7 @@ async function DisplayTodos() {
   return (
     <ul className="mt-4 flex list-disc flex-col items-center">
       {todos.map((todo) => (
-        <li key={todo.id} className="items-center border-b-2 pt-2">
+        <li key={todo.id} className="items-center border-b-2 p-2">
           <div className="flex flex-row items-center gap-4">
             <p className="truncate text-2xl">{todo.content}</p>
             <button type="button" className="btn btn-outline btn-error">
