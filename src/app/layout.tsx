@@ -1,6 +1,6 @@
 import "~/styles/globals.css";
 
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, RedirectToSignIn, SignedOut } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -22,7 +22,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>{children}</body>
+        <body className={`font-sans ${inter.variable}`}>
+          {children}
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
+        </body>
       </html>
     </ClerkProvider>
   );
