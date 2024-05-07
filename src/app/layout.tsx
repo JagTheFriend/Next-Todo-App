@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import "~/styles/globals.css";
 
 import {
@@ -8,6 +9,7 @@ import {
   SignedOut,
 } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,6 +58,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`font-sans ${inter.variable}`}>
+          <ToastContainer />
           <ClerkLoading>
             <LoadingPage />
           </ClerkLoading>
