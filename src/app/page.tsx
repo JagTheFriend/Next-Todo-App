@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
+import addTodo from "~/actions";
 
 async function DisplayUsername() {
   const user = await currentUser();
@@ -26,14 +27,11 @@ function DisplayInputField() {
   return (
     <form
       className="mx-4 mt-4 flex flex-col items-center justify-center gap-4"
-      action={async (formData) => {
-        "use server";
-        console.log(formData);
-      }}
+      action={addTodo}
     >
       <input
         type="text"
-        name="todoName"
+        name="content"
         placeholder="Todo Name"
         className="input input-bordered input-accent w-full max-w-lg"
       />
