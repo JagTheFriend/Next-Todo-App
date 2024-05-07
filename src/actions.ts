@@ -28,3 +28,19 @@ export default async function addTodo(formData: FormData) {
   }
   revalidatePath("/");
 }
+
+export async function deleteTodo(postId: string) {
+  const { userId } = auth();
+  if (!userId) {
+    return { error: true, message: "Please sign in" };
+  }
+
+  try {
+    await db.todo.delete({
+      where: { id: postId, AND: [{ authorId: userId }] },
+    });
+  } catch (error) {
+    return { error: true, message: "An Error Occurred" };
+  }
+  revalidatePath("/");
+}
