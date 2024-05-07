@@ -1,4 +1,3 @@
-import { SignIn } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
 export default async function HomePage() {
@@ -11,7 +10,6 @@ export default async function HomePage() {
           <h1 className="cursor-pointer text-2xl transition-all hover:underline">
             This is a demo Todo App built with Next.js App Router
           </h1>
-          <SignIn routing="hash" />
         </>
       )}
     </main>
