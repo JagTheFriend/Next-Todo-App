@@ -5,9 +5,9 @@ export default function AuthPage({
   searchParams,
 }: {
   params: { slug: string };
-  searchParams?: { authType: "sign-in" | "sign-up" };
+  searchParams?: { type: "sign-in" | "sign-up" };
 }) {
-  const authType = searchParams?.authType || "sign-in";
+  const authType = searchParams?.type || "sign-in";
 
   return (
     <>
@@ -15,9 +15,9 @@ export default function AuthPage({
         This is a demo Todo App built with Next.js App Router
       </h1>
       {authType === "sign-up" ? (
-        <SignUp routing="hash" />
+        <SignUp routing="hash" signInUrl="/auth?type=sign-in" />
       ) : (
-        <SignIn routing="hash" />
+        <SignIn routing="hash" signUpUrl="/auth?type=sign-up" />
       )}
     </>
   );
