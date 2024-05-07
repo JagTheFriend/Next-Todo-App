@@ -23,6 +23,10 @@ async function DisplayUsername() {
   );
 }
 
+function DisplayTodos() {
+  return <></>;
+}
+
 export default async function HomePage() {
   const user = await currentUser();
 
@@ -37,6 +41,9 @@ export default async function HomePage() {
       </section>
       <section>
         <DisplayInputField />
+      </section>
+      <section>
+        <DisplayTodos />
       </section>
     </main>
   );
