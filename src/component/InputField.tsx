@@ -1,14 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { Bounce, toast } from "react-toastify";
 import addTodo from "~/actions";
 
 export default function DisplayInputField() {
   const [inputContent, setInputContent] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <form
+      ref={formRef}
       className="mx-4 mt-4 flex flex-col items-center justify-center gap-4"
       action={async (formData) => {
         const data = await addTodo(formData);
@@ -25,6 +27,7 @@ export default function DisplayInputField() {
             transition: Bounce,
           });
         }
+        formRef.current?.reset();
       }}
     >
       <input
