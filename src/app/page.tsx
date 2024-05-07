@@ -59,18 +59,6 @@ async function DisplayTodos() {
                     transition: Bounce,
                   });
                 }
-
-                toast.success(`Deleted Todo '${todo.content}'`, {
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                  transition: Bounce,
-                });
               }}
             >
               <button type="submit" className="btn btn-outline btn-error">
