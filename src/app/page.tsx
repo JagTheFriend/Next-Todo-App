@@ -10,7 +10,7 @@ async function DisplayUsername() {
 
   return (
     <div className="mt-4 flex items-center justify-center">
-      <h1 className="cursor-default truncate font-medium hover:underline sm:text-3xl md:text-3xl lg:text-5xl">
+      <h1 className="cursor-default truncate font-medium underline sm:text-3xl md:text-3xl lg:text-5xl">
         Welcome{" "}
         {user.username ??
           user.firstName ??
