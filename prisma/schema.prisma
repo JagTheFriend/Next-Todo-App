@@ -10,11 +10,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+model Todo {
+    id String @id @default(cuid())
+
+    content  String
+    authorId String
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([name])
+    @@index([authorId])
+    @@index([content])
+    @@index([authorId, content])
 }
