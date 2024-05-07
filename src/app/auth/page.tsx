@@ -7,7 +7,7 @@ export default function Page({
   params: { slug: string };
   searchParams?: { type: "sign-in" | "sign-up" };
 }) {
-  const searchParam = searchParams?.type || "sign-in";
+  const searchParam = searchParams?.type ?? "sign-in";
   return (
     <>
       <h1 className="cursor-pointer text-2xl transition-all hover:underline">
