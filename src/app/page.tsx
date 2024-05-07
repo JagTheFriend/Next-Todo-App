@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import DisplayInputField from "~/component/InputField";
+import { db } from "~/server/db";
 
 async function DisplayUsername() {
   const user = await currentUser();
@@ -23,8 +24,30 @@ async function DisplayUsername() {
   );
 }
 
-function DisplayTodos() {
-  return <></>;
+async function DisplayTodos() {
+  const user = await currentUser();
+  if (!user) {
+    return null;
+  }
+  const todos = await db.todo.findMany({
+    where: { authorId: user.id },
+    orderBy: { createdAt: "desc" },
+  });
+
+  return (
+    <ul className="mt-4 flex list-disc flex-col items-center">
+      {todos.map((todo) => (
+        <li key={todo.id} className="items-center border-b-2 pt-2">
+          <div className="flex flex-row items-center gap-4">
+            <p className="truncate text-2xl">{todo.content}</p>
+            <button type="button" className="btn btn-outline btn-error">
+              Delete
+            </button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default async function HomePage() {
