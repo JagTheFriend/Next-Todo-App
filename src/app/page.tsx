@@ -1,6 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
-import { db } from "~/server/db";
 
 async function DisplayUsername() {
   const user = await currentUser();
@@ -10,7 +9,7 @@ async function DisplayUsername() {
 
   return (
     <div className="mt-4 flex items-center justify-center">
-      <h1 className="cursor-default truncate font-medium underline sm:text-3xl md:text-3xl lg:text-5xl">
+      <h1 className="cursor-default truncate text-5xl font-medium underline">
         Welcome{" "}
         {user.username ??
           user.firstName ??
@@ -23,51 +22,25 @@ async function DisplayUsername() {
   );
 }
 
-async function DisplayTodos() {
-  const user = await currentUser();
-  if (!user) {
-    return null;
-  }
-
-  const todos = await db.todo.findMany({
-    where: {
-      authorId: user.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-
+function DisplayInputField() {
   return (
-    <div className="mt-4 flex flex-col items-center justify-center">
-      <div className="overflow-x-auto">
-        <table className="table-zebra table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th />
-              <th>Name</th>
-              <th>Date Created</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {todos.map((todo, index) => (
-              <tr key={todo.id}>
-                <th>{index + 1}</th>
-                <td>{todo.content}</td>
-                <td>{todo.createdAt.toDateString()}</td>
-                <td>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <form
+      className="mx-4 mt-4 flex flex-col items-center justify-center gap-4"
+      action={async (formData) => {
+        "use server";
+        console.log(formData);
+      }}
+    >
+      <input
+        type="text"
+        name="todoName"
+        placeholder="Todo Name"
+        className="input input-bordered input-accent w-full max-w-lg"
+      />
+      <button type="submit" className="btn btn-primary btn-outline">
+        Add TODO
+      </button>
+    </form>
   );
 }
 
@@ -84,7 +57,7 @@ export default async function HomePage() {
         <DisplayUsername />
       </section>
       <section>
-        <DisplayTodos />
+        <DisplayInputField />
       </section>
     </main>
   );
